@@ -44,9 +44,11 @@ class HBNBCommand(cmd.Cmd):
                 match_attr_and_value = re.search(
                     '^(?:"([^"]*)")?(?:, (.*))?$', attr_or_dict)
                 if match_attr_and_value:
-                    attr_and_value = (match_attr_and_value.group(
-                    1) or "") + " " + (match_attr_and_value.group(2) or "")
-        command = method + " " + classname + " " + uid + " " + attr_and_value
+                    attr_and_value = (match_attr_and_value.group(1)
+                                      or "") + " " +
+                    (match_attr_and_value.group(2) or "")
+                    command = method + " " + classname
+                    + " " + uid + " " + attr_and_value
         self.onecmd(command)
         return command
 
@@ -145,12 +147,12 @@ class HBNBCommand(cmd.Cmd):
             if words[0] not in storage.classes():
                 print("** class doesn't exist **")
             else:
-                l = [str(obj) for key, obj in storage.all().items()
-                    if type(obj).__name__ == words[0]]
-                print(l)
+                d = [str(obj) for key, obj in storage.all().items()
+                     if type(obj).__name__ == words[0]]
+                print(d)
         else:
-            l = [str(obj) for key, obj in storage.all().items()]
-            print(l)
+            d = [str(obj) for key, obj in storage.all().items()]
+            print(d)
 
     def do_count(self, line):
         """Counts the instances of a class.
@@ -212,7 +214,6 @@ class HBNBCommand(cmd.Cmd):
                         pass  # fine, stay a string then
                 setattr(storage.all()[key], attribute, value)
                 storage.all()[key].save()
-
 
     if __name__ == '__main__':
         HBNBCommand().cmdloop()
