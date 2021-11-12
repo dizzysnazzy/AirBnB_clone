@@ -45,8 +45,8 @@ class HBNBCommand(cmd.Cmd):
                     '^(?:"([^"]*)")?(?:, (.*))?$', attr_or_dict)
                 if match_attr_and_value:
                     attr_and_value = (match_attr_and_value.group(1)
-                                      or "") + " " +
-                    (match_attr_and_value.group(2) or "")
+                                      or "") + " " + (
+                                          match_attr_and_value.group(2) or "")
                     command = method + " " + classname
                     + " " + uid + " " + attr_and_value
         self.onecmd(command)
@@ -215,5 +215,6 @@ class HBNBCommand(cmd.Cmd):
                 setattr(storage.all()[key], attribute, value)
                 storage.all()[key].save()
 
-    if __name__ == '__main__':
-        HBNBCommand().cmdloop()
+
+if __name__ == '__main__':
+    HBNBCommand().cmdloop()

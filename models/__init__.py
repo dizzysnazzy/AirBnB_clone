@@ -2,6 +2,6 @@
 """
 Initializes the model package and and creates a unique FileStorage instance
 """
-from model.engine.file_storage import FileStorage
+from models.engine.file_storage import FileStorage
 storage = FileStorage()
 storage.reload()
