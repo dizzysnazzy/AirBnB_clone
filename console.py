@@ -35,20 +35,20 @@ class HBNBCommand(cmd.Cmd):
         else:
             uid = args
             attr_or_dict = False
-            attr_and_value = ""
-            if method == "update" and attr_or_dict:
-                match_dict = re.search('^({.*})$', attr_or_dict)
-                if match_dict:
-                    self.update_dict(classname, uid, match_dict.group(1))
-                    return ""
-                match_attr_and_value = re.search(
-                    '^(?:"([^"]*)")?(?:, (.*))?$', attr_or_dict)
-                if match_attr_and_value:
-                    attr_and_value = (match_attr_and_value.group(1)
-                                      or "") + " " + (
-                                          match_attr_and_value.group(2) or "")
-                    command = method + " " + classname
-                    + " " + uid + " " + attr_and_value
+        attr_and_value = ""
+        if method == "update" and attr_or_dict:
+            match_dict = re.search('^({.*})$', attr_or_dict)
+            if match_dict:
+                self.update_dict(classname, uid, match_dict.group(1))
+                return ""
+            match_attr_and_value = re.search(
+                '^(?:"([^"]*)")?(?:, (.*))?$', attr_or_dict)
+            if match_attr_and_value:
+                attr_and_value = (match_attr_and_value.group(1)
+                                  or "") + " " + (
+                                      match_attr_and_value.group(2) or "")
+                command = method + " " + classname
+                + " " + uid + " " + attr_and_value
         self.onecmd(command)
         return command
 
@@ -147,12 +147,12 @@ class HBNBCommand(cmd.Cmd):
             if words[0] not in storage.classes():
                 print("** class doesn't exist **")
             else:
-                d = [str(obj) for key, obj in storage.all().items()
+                q = [str(obj) for key, obj in storage.all().items()
                      if type(obj).__name__ == words[0]]
-                print(d)
+                print(q)
         else:
-            d = [str(obj) for key, obj in storage.all().items()]
-            print(d)
+            q = [str(obj) for key, obj in storage.all().items()]
+            print(q)
 
     def do_count(self, line):
         """Counts the instances of a class.
