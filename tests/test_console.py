@@ -36,14 +36,14 @@ class TestHBNBCommand(unittest.TestCase):
 
     def setUp(self):
         """Sets up test cases."""
-	if os.path.isfile("file.json"):
-	    os.remove("file.json")
-	self.resetStorage()
+        if os.path.isfile("file.json"):
+            os.remove("file.json")
+        self.resetStorage()
 
     def resetStorage(self):
         """Resets FileStorage data."""
-	FileStorage._FileStorage__objects = {}
-	if os.path.isfile(FileStorage._FileStorage__file_path):
+        FileStorage._FileStorage__objects = {}
+        if os.path.isfile(FileStorage._FileStorage__file_path):
 	    os.remove(FileStorage._FileStorage__file_path)
 
     def test_help(self):
@@ -633,50 +633,50 @@ EOF  all  count  create  destroy  help  quit  show  update
 	uid = self.create_class("BaseModel")
 	with patch('sys.stdout', new=StringIO()) as f:
 	    HBNBCommand().onecmd(".update()")
-	msg = f.getvalue()[:-1]
-	self.assertEqual(msg, "** class name missing **")
+        msg = f.getvalue()[:-1]
+        self.assertEqual(msg, "** class name missing **")
         
         with patch('sys.stdout', new=StringIO()) as f:
-	    HBNBCommand().onecmd("garbage.update()")
-	msg = f.getvalue()[:-1]
-	self.assertEqual(msg, "** class doesn't exist **")
+            HBNBCommand().onecmd("garbage.update()")
+        msg = f.getvalue()[:-1]
+        self.assertEqual(msg, "** class doesn't exist **")
 
         with patch('sys.stdout', new=StringIO()) as f:
-	    HBNBCommand().onecmd("BaseModel.update()")
-	msg = f.getvalue()[:-1]
-	self.assertEqual(msg, "** instance id missing **")
+            HBNBCommand().onecmd("BaseModel.update()")
+        msg = f.getvalue()[:-1]
+        self.assertEqual(msg, "** instance id missing **")
 
         with patch('sys.stdout', new=StringIO()) as f:
-	    HBNBCommand().onecmd("BaseModel.update(6534276893)")
-	msg = f.getvalue()[:-1]
-	self.assertEqual(msg, "** no instance found **")
+            HBNBCommand().onecmd("BaseModel.update(6534276893)")
+        msg = f.getvalue()[:-1]
+        self.assertEqual(msg, "** no instance found **")
 
         with patch('sys.stdout', new=StringIO()) as f:
-	    HBNBCommand().onecmd('BaseModel.update("{}")'.format(uid))
-	msg = f.getvalue()[:-1]
-	self.assertEqual(msg, "** attribute name missing **")
+            HBNBCommand().onecmd('BaseModel.update("{}")'.format(uid))
+        msg = f.getvalue()[:-1]
+        self.assertEqual(msg, "** attribute name missing **")
 
         with patch('sys.stdout', new=StringIO()) as f:
-	    HBNBCommand().onecmd('BaseModel.update("{}", "name")'.format(uid))
-	msg = f.getvalue()[:-1]
-	self.assertEqual(msg, "** value missing **")
+            HBNBCommand().onecmd('BaseModel.update("{}", "name")'.format(uid))
+        msg = f.getvalue()[:-1]
+        self.assertEqual(msg, "** value missing **")
 
     def create_class(self, classname):
         """Creates a class for console tests."""
-	with patch('sys.stdout', new=StringIO()) as f:
-	    HBNBCommand().onecmd("create {}".format(classname))
-	uid = f.getvalue()[:-1]
-	self.assertTrue(len(uid) > 0)
-	return uid
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create {}".format(classname))
+        uid = f.getvalue()[:-1]
+        self.assertTrue(len(uid) > 0)
+        return uid
 
     def help_load_dict(self, rep):
         """Helper method to test dictionary equality."""
-	rex = re.compile(r"^\[(.*)\] \((.*)\) (.*)$")
-	res = rex.match(rep)
-	self.assertIsNotNone(res)
-	s = res.group(3)
-	s = re.sub(r"(datetime\.datetime\([^)]*\))", "'\\1'", s)
-	d = json.loads(s.replace("'", '"'))
+        rex = re.compile(r"^\[(.*)\] \((.*)\) (.*)$")
+        res = rex.match(rep)
+        self.assertIsNotNone(res)
+        s = res.group(3)
+        s = re.sub(r"(datetime\.datetime\([^)]*\))", "'\\1'", s)
+        d = json.loads(s.replace("'", '"'))
         return d
 
     def classes(self):
