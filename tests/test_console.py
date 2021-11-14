@@ -54,6 +54,7 @@ class TestHBNBCommand(unittest.TestCase):
 Documented commands (type help <topic>):
 ========================================
 EOF  all  count  create  destroy  help  quit  show  update
+
 """
         self.assertEqual(s, f.getvalue())
 
@@ -557,18 +558,18 @@ EOF  all  count  create  destroy  help  quit  show  update
                                       value, quotes, False)
                 self.help_test_update(classname, uid, attr,
                                       value, quotes, True)
-                pass
-                if classname == "BaseModel":
+            pass
+            if classname == "BaseModel":
+                continue
+            for attr, attr_type in self.attributes()[classname].items():
+                if attr_type not in (str, int, float):
                     continue
-                for attr, attr_type in self.attributes()[classname].items():
-                    if attr_type not in (str, int, float):
-                        continue
-                    self.help_test_update(classname, uid, attr,
-                                          self.attribute_values[attr_type],
-                                          True, False)
-                    self.help_test_update(classname, uid, attr,
-                                          self.attribute_values[attr_type],
-                                          False, True)
+                self.help_test_update(classname, uid, attr,
+                                      self.attribute_values[attr_type],
+                                      True, False)
+                self.help_test_update(classname, uid, attr,
+                                      self.attribute_values[attr_type],
+                                      False, True)
 
     def help_test_update(self, classname, uid, attr, val, quotes, func):
         """Tests update commmand."""
