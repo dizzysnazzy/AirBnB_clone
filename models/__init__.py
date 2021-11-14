@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """
 Initializes the model package and and creates a unique FileStorage instance
 """
