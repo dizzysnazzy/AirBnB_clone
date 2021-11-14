@@ -2,17 +2,49 @@
 """Module for the entry point of the command interpreter."""
 
 import cmd
+from datetime import datetime
+import models
+from models.amenity import Amenity
 from models.base_model import BaseModel
-from models import storage
-import re
-import json
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
+import shlex
 
+classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
+           "Place": Place, "Review": Review, "State": State, "User": User}
 
 class HBNBCommand(cmd.Cmd):
-
     """Class for the command interpreter."""
+    prompt = '(hbnb) '
+    
+     def do_EOF(self, arg):
+        """Exits the console"""
+        return True
 
-    prompt = "(hbnb) "
+    def emptyline(self):
+        """ emptyline method """
+        return False
+
+    def do_quit(self, arg):
+        """Implementation of Quit command to exit"""
+        return True
+    
+    def do_create(self, arg):
+        """Creates a new instance of a class"""
+        args = shlex.split(arg)
+        if len(args) == 0:
+            print("** class name missing **")
+            return False
+        if args[0] in classes:
+            instance = classes[args[0]]()
+        else:
+            print("** class doesn't exist **")
+            return False
+        print(instance.id)
+        instance.save()
 
     def default(self, line):
         """Catch commands if nothing else matches then."""
@@ -73,34 +105,6 @@ class HBNBCommand(cmd.Cmd):
                         value = attributes[attribute](value)
                     setattr(storage.all()[key], attribute, value)
                 storage.all()[key].save()
-
-    def do_EOF(self, line):
-        """Handles End Of File character.
-        """
-        print()
-        return True
-
-    def do_quit(self, line):
-        """Exits the program.
-        """
-        return True
-
-    def emptyline(self):
-        """Doesn't do anything on ENTER.
-        """
-        pass
-
-    def do_create(self, line):
-        """Creates an instance.
-        """
-        if line == "" or line is None:
-            print("** class name missing **")
-        elif line not in storage.classes():
-            print("** class doesn't exist **")
-        else:
-            b = storage.classes()[line]()
-            b.save()
-            print(b.id)
 
     def do_show(self, line):
         """Prints the string representation of an instance.
