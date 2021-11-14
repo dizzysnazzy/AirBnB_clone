@@ -9,24 +9,25 @@ from models import storage
 
 
 class BaseModel:
+
     """Class for base model of object hierarchy."""
 
     def __init__(self, *args, **kwargs):
         """Initialization of a Base instance.
 
-                Args:
-                    - *args: list of arguments
-                    - **kwargs: dict of key_values arguments
+        Args:
+            - *args: list of arguments
+            - **kwargs: dict of key-values arguments
         """
 
         if kwargs is not None and kwargs != {}:
             for key in kwargs:
                 if key == "created_at":
-                    self.__dict__["created_at"] = datetime.strptime(kwargs[
-                        "created_at"], "%Y-%m-%dT%H:%M:%S.%f")
-                elif key == "update_at":
-                    self.__dict__["updated_at"] = datetime.strptime(kwargs[
-                        "updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
+                    self.__dict__["created_at"] = datetime.strptime(
+                        kwargs["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
+                elif key == "updated_at":
+                    self.__dict__["updated_at"] = datetime.strptime(
+                        kwargs["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
                 else:
                     self.__dict__[key] = kwargs[key]
         else:
@@ -36,13 +37,15 @@ class BaseModel:
             storage.new(self)
 
     def __str__(self):
-        """Return a human-readable string representation of an instance."""
+        """Returns a human-readable string representation
+        of an instance."""
 
-        return "[{}] ({}) {}".format(type(self).__name__, self.id,
-                                     self.__dict__)
+        return "[{}] ({}) {}".\
+            format(type(self).__name__, self.id, self.__dict__)
 
     def save(self):
-        """Updates the updated_at attribute with the current datetime."""
+        """Updates the updated_at attribute
+        with the current datetime."""
 
         self.updated_at = datetime.now()
         storage.save()
