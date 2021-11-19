@@ -4,7 +4,7 @@
 
 /* Filters style */
 .filters {
-  background-color: #FFF;
+  background-color: #FFFFFF;
   border: 1px solid #DDDDDD;
   border-radius: 4px;
   display: inline-block;
@@ -17,7 +17,7 @@
   background: #FF5A5F;
   border: none;
   border-radius: 4px;
-  color: #FFF;
+  color: #FFFFFF;
   float: right;
   font-size: 18px;
   height: 48px;
@@ -41,7 +41,7 @@
 
 /* Locations border */
 .filters .locations {
-  border-right: 1px solid #DDD;
+  border-right: 1px solid #DDDDDD;
 }
 
 /* Locations and amenities hover opacity */

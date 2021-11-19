@@ -2,16 +2,16 @@
  * === Filters class style ===
  */
 
-/* 4 Filters style */
+/* Filters style */
 .filters {
-  background-color: #FFF;
+  background-color: #FFFFFF;
   border: 1px solid #DDDDDD;
   border-radius: 4px;
   height: 70px;
   width: 100%;
 }
 
-/* 4 Search button style */
+/* Search button style */
 .filters button {
   background: #FF5A5F;
   border: none;

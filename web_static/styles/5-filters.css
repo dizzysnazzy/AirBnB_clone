@@ -4,7 +4,7 @@
 
 /* Filters style */
 .filters {
-  background-color: #FFF;
+  background-color: #FFFFFF;
   border: 1px solid #DDDDDD;
   border-radius: 4px;
   height: 70px;
@@ -16,7 +16,7 @@
   background: #FF5A5F;
   border: none;
   border-radius: 4px;
-  color: #FFF;
+  color: #FFFFFF;
   float: right;
   font-size: 18px;
   height: 48px;
@@ -29,7 +29,7 @@
   background-color: rgba(255, 90, 95, .9);
 }
 
-/* 5 Locations and amenities style */
+/* Locations and amenities style */
 .locations,
 .amenities {
   display: inline-block;
@@ -37,9 +37,9 @@
   width: 25%;
 }
 
-/* 5 Locations border */
+/* Locations border */
 .locations {
-  border-right: 1px solid #DDD;
+  border-right: 1px solid #DDDDDD;
 }
 
 /*
