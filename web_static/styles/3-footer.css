@@ -11,7 +11,7 @@ footer {
     position: fixed;
 }
 
-.footText {
+.footMsg {
     text-align: center;
     display: flex;
     align-items: center;
