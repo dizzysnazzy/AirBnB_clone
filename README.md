@@ -64,4 +64,4 @@ The test for the classes are in the [test_models](./tests/test_models/) folder.
 ## Authors
 
 - **Dismas Kipchumba** - [dismaskipchumba2@gmail.com](https://github.com/dizzysnazzy)
-- **** - []()
+- **Derrick Ampire** - [ampire90@gmail.com](https://github.com/am-derrick)
